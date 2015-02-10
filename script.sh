@@ -14,13 +14,20 @@ sudo yum install -y \
          php  php-fpm php-cli php-common php-gd php-intl php-xml php-process php-pecl-xdebug php-pecl-apcu php php-mcrypt* php-mbstring php-mysql \
          mariadb-server
 
+sudo wget -r --no-parent -A 'epel-release-*.rpm' http://dl.fedoraproject.org/pub/epel/7/x86_64/e/
+sudo rpm -Uvh dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-*.rpm
+
+sudo yum install -y redis
+
 ###################
 # Manage Services #
 ###################
 sudo systemctl start httpd
 sudo systemctl start mongod
 sudo systemctl start mariadb.service
+sudo systemctl start redis.service
 
+sudo systemctl enable redis.service
 sudo systemctl enable mariadb.service
 sudo systemctl enable httpd.service
 sudo chkconfig mongod on
