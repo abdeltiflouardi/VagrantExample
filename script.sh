@@ -7,17 +7,18 @@ sudo cp /vagrant/files/mongodb.repo /etc/yum.repos.d/mongodb.repo
 ####################
 # Install packages #
 ####################
-sudo yum update -y
-
-sudo yum install -y \
-         httpd wget nano lynx mongodb-org mongodb-org-server mod_ssl \
-         php  php-fpm php-cli php-common php-gd php-intl php-xml php-process php-pecl-xdebug php-pecl-apcu php php-mcrypt* php-mbstring php-mysql \
-         mariadb-server
-
 sudo wget -r --no-parent -A 'epel-release-*.rpm' http://dl.fedoraproject.org/pub/epel/7/x86_64/e/
 sudo rpm -Uvh dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-*.rpm
 
-sudo yum install -y redis
+sudo rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+
+sudo yum update -y
+
+sudo yum install --enablerepo=remi,remi-php56 -y \
+         httpd wget nano lynx mongodb-org mongodb-org-server mod_ssl \
+         php php-devel php-fpm php-cli php-pear php-pdo php-mysqlnd php-common php-gd php-intl php-xml php-process php php-mcrypt* php-mbstring php-mysql \
+         php-pecl-xdebug php-pecl-apcu php-pecl-memcached php-pecl-memcache php-pecl-mongo php-pecl-redis php-pecl-sqlite php-opcache \
+         mariadb-server redis
 
 ###################
 # Manage Services #
