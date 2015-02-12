@@ -58,3 +58,11 @@ sudo mysql -u root <<< "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPT
 # SYSTEM #
 ##########
 sudo bash -c 'echo "192.168.1.200 dev" >> /etc/hosts'
+
+############
+# COMPOSER #
+############
+curl  -k -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+
+
